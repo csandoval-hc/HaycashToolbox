@@ -1,8 +1,20 @@
 # Auto-generated wrapper to run existing Streamlit app without modifying its code.
-import os, runpy
+import os
+import runpy
+from pathlib import Path
 
-_APP_DIR = os.path.join(os.path.dirname(__file__), "..", "apps/analisis_leads")
-_APP_DIR = os.path.abspath(_APP_DIR)
-os.chdir(_APP_DIR)
+from simple_auth import require_shared_password
 
-runpy.run_path(os.path.join(_APP_DIR, "streamlit_app.py"), run_name="__main__")
+require_shared_password()
+
+# Repo root (works on Streamlit Cloud and locally)
+ROOT = Path(__file__).resolve().parents[1]
+
+# Target app folder inside repo
+APP_DIR = ROOT / "apps" / "analisis_leads"
+
+# Change working directory so relative paths inside the tool still work
+os.chdir(APP_DIR)
+
+# Run the original Streamlit app
+runpy.run_path(str(APP_DIR / "streamlit_app.py"), run_name="__main__")
