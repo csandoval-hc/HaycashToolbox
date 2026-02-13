@@ -1,0 +1,9 @@
+apps:
+- id: tool_one
+  name: Tool One
+  page: pages/01_Tool_One.py
+  icon: assets/icons/tool_one.svg
+- id: tool_two
+  name: Tool Two
+  page: pages/02_Tool_Two.py
+  icon: assets/icons/tool_two.svg
