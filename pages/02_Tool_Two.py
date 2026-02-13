@@ -4,6 +4,14 @@ import streamlit as st
 
 from simple_auth import require_shared_password
 require_shared_password()
+from pathlib import Path
+import base64
+
+def _get_bg_b64() -> str:
+    img_path = Path(__file__).resolve().parents[1] / "assets" / "bg.jpg"
+    return base64.b64encode(img_path.read_bytes()).decode("utf-8")
+
+bg_b64 = _get_bg_b64()
 
 ROOT = Path(__file__).resolve().parents[1]
 ASSETS = ROOT / "assets"
